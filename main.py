@@ -11,7 +11,7 @@ app.secret_key='test'
 app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/gymdb'
 db=SQLAlchemy(app)
 
-
+#initializing table in python
 class Test(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(20))
@@ -22,11 +22,7 @@ class Test(db.Model):
 #this is the landing page
 @app.route('/')
 def Home_page():
-    try:
-        Test.query.all()
-        return 'connected'
-    except:
-        return 'not connected'
+    return render_template('index.html')
   
  
 
