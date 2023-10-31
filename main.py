@@ -5,7 +5,8 @@ pymysql.install_as_MySQLdb()
  
 #connecting to database
 locl_server=True
-app=Flask(__name__,template_folder='templates')
+app=Flask(__name__, template_folder='templates',static_folder='static')
+
 app.secret_key='test'
 
 app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/gymdb'
