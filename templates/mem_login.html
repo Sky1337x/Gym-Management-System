@@ -27,17 +27,16 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <form>
+            <form action="/login" method="post">
 
                 <div class="mb-3">
                   <label for="email">Email address</label>
-                  <input type="email" class="form-control" id="email" required>
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                  <input type="email" class="form-control" id="email" name="email" required>
                 </div>
 
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" required>
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
