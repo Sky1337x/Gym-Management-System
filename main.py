@@ -29,15 +29,45 @@ class User(UserMixin,db.Model):
     email=db.Column(db.String(50),unique=True)
     password=db.Column(db.String(1000))
 
+class Admin(UserMixin,db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    email=db.Column(db.String(50),unique=True)
+    password=db.Column(db.String(1000))
+
 
 #this is the landing page
 @app.route('/')
 def Home_page():
     return render_template('index.html')
 
+@app.route('/meminfo')
+def meminfo():
+    query=db.engine.execute(f"SELECT * FROM `user`")
+    
+    return render_template('mem_info.html',query=query)
+
+@app.route('/trainer',methods=['POST','GET'])
+def trainer():
+    if request.method=='POST':
+        email=request.form.get('email')
+        password=request.form.get('password')
+        user=Admin.query.filter_by(email=email).first()
+
+        if user and password==user.password:
+            login_user(user)
+            return redirect(url_for('tarea'))
+        else:
+            print("invalid credentials")
+            return render_template("admin_login.html")
+    return render_template('admin_login.html')
+
 @app.route('/member')
 def member():
     return render_template('member_area.html')
+
+@app.route('/tarea')
+def tarea():
+    return render_template('admin_area.html')
 
 
 
